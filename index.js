@@ -11,9 +11,17 @@ app.use(cors());
 app.use(express.json());
 
 mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+  ssl: true,
+  sslValidate: true,
+  tlsAllowInvalidCertificates: false,
+  tlsAllowInvalidHostnames: false,
+})
+  .then(() => {
+    console.log('MongoDB connected');
+  })
+  .catch(err => {
+    console.error('MongoDB connection error:', err);
+  });
 
 app.use('/api', openaiRoutes);
 app.use('/api', productRoutes);
