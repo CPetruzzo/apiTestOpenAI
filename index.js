@@ -10,12 +10,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect(process.env.MONGO_URI, {
-  ssl: true,
-  sslValidate: true,
-  tlsAllowInvalidCertificates: false,
-  tlsAllowInvalidHostnames: false,
-})
+mongoose.connect(process.env.MONGO_URI, {})
   .then(() => {
     console.log('MongoDB connected');
   })
