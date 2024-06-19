@@ -24,7 +24,7 @@ router.post('/generate', async (req, res) => {
     const productCards = products.map(p => `Product Name: ${p.name}, Description: ${p.description}, Price: $${p.price}`).join('\n');
 
     const response = await openai.chat.completions.create({
-      model: 'gpt-3.5-turbo', // O cambia a 'gpt-4' si es necesario
+      model: 'gpt-3.5-turbo',
       messages: [
         { role: 'user', content: `${prompt}\n\n${productCards}` }
       ],
